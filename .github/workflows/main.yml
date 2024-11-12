@@ -23,5 +23,5 @@ jobs:
     - name: Analyzing the code with pylin
       run: |
         ruff check 
-        bandit $(git ls-files '*.py') -x B405,B314,B0101
+        bandit $(git ls-files '*.py') -x B405,B314,B101
       
