@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      script: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Ruff lint
+      script: |
+        ruff check
+
+    - name: Bandit Security
+      script: |
+        bandit -r .
